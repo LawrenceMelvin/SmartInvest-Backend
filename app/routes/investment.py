@@ -39,21 +39,16 @@ def investment_plan():
         })
 
     advice = []
-    if not data["hasHealthInsurance"]:
+    print(data["hasHealthInsurance"])
+    if data["hasHealthInsurance"] == 'False' or data["hasHealthInsurance"] == False:
         advice.append("We recommend buying health insurance before investing.")
-    if not data["hasTermInsurance"]:
+    if data["hasTermInsurance"] == 'False' or data["hasTermInsurance"] == False:
         advice.append("We recommend buying term life insurance before investing.")
-    if not data["hasEmergencyFund"]:
+    if data["hasEmergencyFund"] == 'False' or data["hasEmergencyFund"] == False:
         advice.append("You should maintain an emergency fund of at least 3–6 months of expenses.")
 
     funds = {cat: fund_suggestions.get(cat, []) for cat in breakdown}
 
-    print(jsonify({
-        "advice": advice,
-        "breakdown": breakdown_array,
-        "funds": funds
-    })
-    )
     return jsonify({
         "advice": advice,
         "breakdown": breakdown_array,
